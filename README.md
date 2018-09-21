@@ -46,6 +46,7 @@ java -cp server_executable.jar -Djavax.net.ssl.keyStore=PATH-TO-SERVER-KEYSTORE 
 - the server_executable.jar is the file which was exported from your favourite IDE from the source code
 - Djavax.net.ssl.keyStore flag will define where the keystore is located, from which the server will load it's private key
 - Djavax.net.ssl.keyStorePassword is needed to be able to unlock the keystore (it was given during the creation of the keystore)
+- if necessary the flag "**-Djavax.net.debug=all**" can be passed to the command when starting the server to see some extra info about the inner workings of SSL
 
 ### Run the client
 ```
@@ -58,9 +59,9 @@ java -cp client_executable.jar -Djavax.net.ssl.trustStore=PATH-TO-CLIENT-TRUSTST
 
 ### PCAP Capture of Client-Server handshake
 
-Traffic exchanged:
+Traffic exchanged (capture can be found in the repo as well).
 
-![alt text]("Capture")
+![alt text](https://github.com/florianakos/custom-ssl-clientserver-lab2part5/raw/master/pcap.png  "Pcap Capture")
 
 
 ## Acknowledgments
