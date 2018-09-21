@@ -2,6 +2,8 @@
 
 Slight modification of the SSL client-server implementation from course D7001D at LTU. 
 
+![alt text](/custom-ssl-clientserver-lab2part5/success.png  "Success")
+
 ### Generate and install SSL keys
 
 ## SSL Server side: 
