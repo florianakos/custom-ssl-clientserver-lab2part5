@@ -1,4 +1,4 @@
-# Simple Messaging Architecture - with Java
+# SSL Client Server Implementation (Java)
 
 Slight modification of the SSL client-server implementation from course D7001D at LTU. 
 
@@ -11,13 +11,13 @@ Slight modification of the SSL client-server implementation from course D7001D a
 
 Create a folder and execute the below commands inside the folder:
 ```
-keytool -genkeypair -alias key_id -keyalg RSA -validity 365 -keystore server_keystore
+keytool -genkeypair -alias some_random_keyname -keyalg RSA -validity 365 -keystore server_keystore
 
-keytool -export -alias duke -keystore server_keystore -rfc -file server.cert
+keytool -export -alias some_random_keyname -keystore server_keystore -rfc -file server.cert
 ```
 The first command generates a private key and stores it into the "**server_keystore**" file. Important to keep this file safe! Also a password will be asked when executing the command. It should be easy to remember and it will be necessary to run the server so remember it!
 The second command extracts a self-signed certificate from the **server_keystore**. This will have to be copied over to the client side.
-Alternatively the below command can also be useful for extracting the server certificate over the network.
+Alternatively the below command can also be useful for testing whether the server is sending the correct certificate over the network.
 ```
 openssl s_client -connect IP_ADDRESS:PORT
 ```
@@ -28,7 +28,7 @@ Create a folder for the source code and other misc files and copy the SSL cert t
 ```
 keytool -import -alias servercert -file server.cert -keystore truststore
 ```
-This command will take the certificate and install it in a keystore that will be called "**truststore**" and it will act as a storage for trusted keys. The distinction between **keystore** and **truststore** is important for Java Security!
+This command will take the **server.cert** and install it in a keystore that will be called **truststore** and it will act as a storage for trusted keys. The distinction between **keystore** and **truststore** is important for Java Security!
 
 
 ## Compile & Execute
@@ -37,7 +37,7 @@ Export the java class files into an executable JAR file (how-to [link](https://w
 
 Copy the server's JAR file to the AWS Instance running in the cloud. On windows there is WinSCP available, on Linux the Nautilus file manager can open an ssh session to the instance to make it easier.
 
-Afterwards start two terminals, one on the server and one on the local machine and use the following syntax to run the JAR files respectively.
+Afterwards start two terminals, one on the AWS Instance and one on the local machine and use the following syntax to run the JAR files respectively.
 
 ### Run the server
 ```
